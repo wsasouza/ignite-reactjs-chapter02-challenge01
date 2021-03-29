@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   MdDelete,
   MdAddCircleOutline,
@@ -18,6 +17,7 @@ interface Product {
 }
 
 const Cart = (): JSX.Element => {
+<<<<<<< HEAD
   const { cart, removeProduct, updateProductAmount } = useCart();
 
   const cartFormatted = cart.map(product => ({
@@ -44,6 +44,36 @@ const Cart = (): JSX.Element => {
       productId: product.id,
       amount: product.amount - 1
     });
+=======
+   const { cart, removeProduct, updateProductAmount } = useCart();
+
+   const cartFormatted = cart.map(product => ({
+     ...product, priceFormatted: formatPrice(product.price), 
+      subTotal: formatPrice(product.price * product.amount)
+   }))
+   const total =
+     formatPrice(
+       cart.reduce((sumTotal, product) => {
+        sumTotal += product.price * product.amount;
+        return sumTotal;
+       }, 0)
+     )
+
+  function handleProductIncrement(product: Product) {
+    const incrementArguments = {
+      productId: product.id,
+      amount: product.amount + 1
+    }
+    updateProductAmount(incrementArguments);
+  }
+
+  function handleProductDecrement(product: Product) {
+    const decrementArguments = {
+      productId: product.id,
+      amount: product.amount - 1
+    }
+    updateProductAmount(decrementArguments);
+>>>>>>> 11c7e8669011fb881e77c7d7ca1f9ff23933ffe1
   }
 
   function handleRemoveProduct(productId: number) {
@@ -64,7 +94,11 @@ const Cart = (): JSX.Element => {
         </thead>
         <tbody>
           {cartFormatted.map(product => (
+<<<<<<< HEAD
           <tr data-testid="product" key={product.id}>
+=======
+            <tr data-testid="product" key={product.id}>
+>>>>>>> 11c7e8669011fb881e77c7d7ca1f9ff23933ffe1
             <td>
               <img src={product.image} alt={product.title} />
             </td>
@@ -87,7 +121,10 @@ const Cart = (): JSX.Element => {
                   data-testid="product-amount"
                   readOnly
                   value={product.amount}
+<<<<<<< HEAD
                   style={{textAlign:'center'}}                  
+=======
+>>>>>>> 11c7e8669011fb881e77c7d7ca1f9ff23933ffe1
                 />
                 <button
                   type="button"
